@@ -9,7 +9,7 @@ int main()
 
     int cir_x{20}; // X cirlce position.
     int cir_y{ heid / 2}; // Y circle position.
-    int cir_r{20}; // cirle radius.
+    int cir_r{20}; // circle radius.
 
     //text & lenght.
     const char* txt = "Game Over!";
@@ -73,7 +73,7 @@ int main()
 
 
     SetTargetFPS(60); // frame FPS.
-    while (!WindowShouldClose()) // This is from -raylib command, "!" because "bool" always true.
+    while (!WindowShouldClose()) // This function is from -raylib, "!" because bool is true.
     {
         // star game logic.
         BeginDrawing();
