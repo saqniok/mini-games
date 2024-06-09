@@ -7,13 +7,13 @@ int main()
     int heid = 800;
     InitWindow(wid, heid, "Test window");
 
-    int cir_x{20}; // X cirlce position.
-    int cir_y{ heid / 2}; // Y circle position.
-    int cir_r{20}; // circle radius.
-
     //text & lenght.
     const char* txt = "Game Over!";
     int txt_len = MeasureText(txt, 40);
+
+    int cir_x{20}; // X cirlce position.
+    int cir_y{heid / 2}; // Y circle position.
+    int cir_r{20}; // circle radius.
 
     // circle edges.
     int lcu_l_circle_x{cir_x - cir_r}; // left-up X circle edge.
@@ -21,21 +21,21 @@ int main()
     int rcu_u_circle_y{cir_y - cir_r}; // right-up Y circle edge.
     int rcd_b_circle_y{cir_y + cir_r}; // righ-down Y circle edge.
 
-    int xdir1{8}; // 1st X square speed.
-    int ydir1{8}; // 1st Y square speed.
-
-    int xdir2{10}; // 2nd X square speed.
-    int ydir2{10}; // 2nd Y square speed.
-
-    int xdir3{12}; // 3rd X square speed.
-    int ydir3{12}; // 3rd Y square speed.
-    
-    
     int sqr_size{40}; // square size.
+
+    int xdir1{8}; // 1st X square speed direction.
+    int ydir1{8}; // 1st Y square speed direction.
+
+    int xdir2{10}; // 2nd X square speed direction.
+    int ydir2{10}; // 2nd Y square speed direction.
+
+    int xdir3{12}; // 3rd X square speed direction.
+    int ydir3{12}; // 3rd Y square speed direction.
     
     // 1st square.
     int sqr1_x{wid - sqr_size};
     int sqr1_y{heid - sqr_size};
+    
     // 1st square edges.
     int la1d_l_sqr_x{sqr1_x};
     int ra1d_r_sqr_x{sqr1_x + sqr_size};
@@ -45,6 +45,7 @@ int main()
     // 2nd square.
     int sqr2_x{(wid - sqr_size) / 2};
     int sqr2_y{heid - sqr_size};
+    
     // 2nd square edges.
     int la2d_l_sqr_x{sqr2_x};
     int ra2d_r_sqr_x{sqr2_x + sqr_size};
@@ -54,6 +55,7 @@ int main()
     // 3rd square.
     int sqr3_x{wid - sqr_size};
     int sqr3_y{(heid - sqr_size) / 5};
+    
     // 3rd suqare edges.
     int la3d_l_sqr_x{sqr3_x};
     int la3d_r_sqr_x{sqr3_x + sqr_size};
@@ -62,15 +64,22 @@ int main()
 
     // impact with squares.
     // 1st square.
-    bool sqr1_go = (la1u_u_sqr_y <= rcd_b_circle_y) && (la1d_b_sqr_y >= rcu_u_circle_y) && (la1d_l_sqr_x <= rcu_r_circle_x) && (ra1d_r_sqr_x >= lcu_l_circle_x);
+    bool sqr1_go = (la1u_u_sqr_y <= rcd_b_circle_y) && 
+                   (la1d_b_sqr_y >= rcu_u_circle_y) && 
+                   (la1d_l_sqr_x <= rcu_r_circle_x) && 
+                   (ra1d_r_sqr_x >= lcu_l_circle_x);
     // 2nd square.
-    bool sqr2_go = (la2u_u_sqr_y <= rcd_b_circle_y) && (la2d_b_sqr_y >= rcu_u_circle_y) && (la2d_l_sqr_x <= rcu_r_circle_x) && (ra2d_r_sqr_x >= lcu_l_circle_x);
+    bool sqr2_go = (la2u_u_sqr_y <= rcd_b_circle_y) && 
+                   (la2d_b_sqr_y >= rcu_u_circle_y) && 
+                   (la2d_l_sqr_x <= rcu_r_circle_x) && 
+                   (ra2d_r_sqr_x >= lcu_l_circle_x);
     // 3rd square.
-    bool sqr3_go = (la3d_u_sqr_y <= rcd_b_circle_y) && (la3d_b_sqr_y >= rcu_u_circle_y) && (la3d_l_sqr_x <= rcu_r_circle_x) && (la3d_r_sqr_x >= lcu_l_circle_x);
+    bool sqr3_go = (la3d_u_sqr_y <= rcd_b_circle_y) && 
+                   (la3d_b_sqr_y >= rcu_u_circle_y) && 
+                   (la3d_l_sqr_x <= rcu_r_circle_x) && 
+                   (la3d_r_sqr_x >= lcu_l_circle_x);
     // all suqares.
     bool coll_with_sqr = sqr1_go || sqr2_go || sqr3_go; // collision with suqares.
-
-
 
     SetTargetFPS(60); // frame FPS.
     while (!WindowShouldClose()) // This function is from -raylib, "!" because bool is true.
@@ -83,7 +92,8 @@ int main()
 
         if (coll_with_sqr)
         {
-            DrawText(txt, (wid / 2) - (txt_len / 2), heid / 2, 40, WHITE); // text after collision_with_squares - coll_with_sqr.
+            // text after collision_with_squares - coll_with_sqr.
+            DrawText(txt, (wid / 2) - (txt_len / 2), heid / 2, 40, WHITE); 
             DrawText("Press SPACE to Restart", wid / 2 - MeasureText("Press SPACE to Restart", 20) / 2, heid / 2 + 50, 20, WHITE);
 
             if (IsKeyDown(KEY_SPACE))
@@ -126,12 +136,22 @@ int main()
             int la3d_r_sqr_x = sqr3_x + sqr_size;
 
             // update coll_with_sqr.
-            int sqr1_go = (la1u_u_sqr_y <= rcd_b_circle_y) && (la1d_b_sqr_y >= rcu_u_circle_y) && (la1d_l_sqr_x <= rcu_r_circle_x) && (ra1d_r_sqr_x >= lcu_l_circle_x);
-            int sqr2_go = (la2u_u_sqr_y <= rcd_b_circle_y) && (la2d_b_sqr_y >= rcu_u_circle_y) && (la2d_l_sqr_x <= rcu_r_circle_x) && (ra2d_r_sqr_x >= lcu_l_circle_x);
-            int sqr3_go = (la3d_u_sqr_y <= rcd_b_circle_y) && (la3d_b_sqr_y >= rcu_u_circle_y) && (la3d_l_sqr_x <= rcu_r_circle_x) && (la3d_r_sqr_x >= lcu_l_circle_x);
+            int sqr1_go = (la1u_u_sqr_y <= rcd_b_circle_y) && 
+                          (la1d_b_sqr_y >= rcu_u_circle_y) && 
+                          (la1d_l_sqr_x <= rcu_r_circle_x) && 
+                          (ra1d_r_sqr_x >= lcu_l_circle_x);
+            int sqr2_go = (la2u_u_sqr_y <= rcd_b_circle_y) && 
+                          (la2d_b_sqr_y >= rcu_u_circle_y) && 
+                          (la2d_l_sqr_x <= rcu_r_circle_x) && 
+                          (ra2d_r_sqr_x >= lcu_l_circle_x);
+            int sqr3_go = (la3d_u_sqr_y <= rcd_b_circle_y) && 
+                          (la3d_b_sqr_y >= rcu_u_circle_y) && 
+                          (la3d_l_sqr_x <= rcu_r_circle_x) && 
+                          (la3d_r_sqr_x >= lcu_l_circle_x);
+
             coll_with_sqr = sqr1_go || sqr2_go || sqr3_go;
 
-            DrawCircle( cir_x, cir_y, cir_r, WHITE); // Drawing white cirle.
+            DrawCircle(cir_x, cir_y, cir_r, WHITE); // Drawing white cirle.
             
             DrawRectangle(sqr1_x, sqr1_y, sqr_size, sqr_size, BLACK); // Drawing 1st black sqaure.
             
@@ -143,7 +163,7 @@ int main()
                 ydir1 = -ydir1;
             }
             
-            if(sqr1_x < 0 || sqr1_x > (wid - sqr_size)) // 1st square X edge collision with window.
+            if (sqr1_x < 0 || sqr1_x > (wid - sqr_size)) // 1st square X edge collision with window.
             {
                 xdir1 = -xdir1;
             }
@@ -158,7 +178,7 @@ int main()
                 ydir2 = -ydir2;
             }
             
-            if(sqr2_x < 0 || sqr2_x > (wid - sqr_size)) // 2nd square X edge collision with window.
+            if (sqr2_x < 0 || sqr2_x > (wid - sqr_size)) // 2nd square X edge collision with window.
             {
                 xdir2 = -xdir2;
             }
