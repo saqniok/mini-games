@@ -1,0 +1,7 @@
+This mini-game is a regular fire dodging game.
+In creating this game, I learnt how to:
+- Structuring components.
+- Calculate gravity and apply it. 
+- Use 2D assets to draw objects.
+- Move backgrounds at different speeds.
+- I also used the CheckCollisionRecs() function from the Raylib library, which allows you to calculate collisions without additional calculations, in the reaction mini-game, I did this to check and understand the objects. 
