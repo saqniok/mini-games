@@ -5,3 +5,5 @@ In creating this game, I learnt how to:
 - Use 2D assets to draw objects.
 - Move backgrounds at different speeds.
 - I also used the CheckCollisionRecs() function from the Raylib library, which allows you to calculate collisions without additional calculations, in the reaction mini-game, I did this to check and understand the objects. 
+
+2D assets I dwonloaded from https://itch.io/game-assets
